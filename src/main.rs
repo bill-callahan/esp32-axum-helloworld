@@ -126,7 +126,8 @@ pub struct WifiLoop<'a> {
 
   async fn axumserver() {
     // build our application with a route
-    let app = Router::new().route("/", get(handler));
+    let app = Router::new()
+        .route("/", get(handler));
 
     // run it
     let listener = tokio::net::TcpListener::bind(TCP_LISTENING_PORT)
