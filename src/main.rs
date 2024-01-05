@@ -16,8 +16,8 @@ use crate::webserver::axumserver;
 
 
 // Edit these or provide your own way of provisioning...
-const WIFI_SSID: &str = "Telstra76DCFD";
-const WIFI_PASS: &str = "kcxbg9htnupt";
+const WIFI_SSID: &str = "your_ssid";
+const WIFI_PASS: &str = "password";
 
 esp_app_desc!();
 
