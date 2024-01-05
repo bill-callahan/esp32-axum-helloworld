@@ -2,10 +2,12 @@
 use axum::response::Html;
 
 pub(crate) async fn helloworld() -> Html<&'static str> {
+    println!("->> {:<12} - helloworld", "HANDLER");
     Html("<h1>Hello, World!</h1>")
 }
 
 pub(crate) async fn clock_html() -> Html<String> {
+    println!("->> {:<12} - clock_html", "HANDLER");
     let raw = Html(format!(
         r#"<!doctype html>
         <html>
