@@ -10,15 +10,14 @@ use esp_idf_sys as _;
 use esp_idf_sys::{esp, esp_app_desc, EspError};
 use log::info;
 
-use axum::{response::Html, routing::get, Router};
+
+mod webserver;
+use crate::webserver::axumserver;
+
 
 // Edit these or provide your own way of provisioning...
 const WIFI_SSID: &str = "Telstra76DCFD";
 const WIFI_PASS: &str = "kcxbg9htnupt";
-
-// To test, run `cargo run`, then when the server is up, use `nc -v espressif 12345` from
-// a machine on the same Wi-Fi network.
-const TCP_LISTENING_PORT: &str = "0.0.0.0:3000";
 
 esp_app_desc!();
 
@@ -124,19 +123,4 @@ pub struct WifiLoop<'a> {
     }
   }
 
-  async fn axumserver() {
-    // build our application with a route
-    let app = Router::new()
-        .route("/", get(handler));
 
-    // run it
-    let listener = tokio::net::TcpListener::bind(TCP_LISTENING_PORT)
-        .await
-        .unwrap();
-    println!("listening on {}", listener.local_addr().unwrap());
-    axum::serve(listener, app).await.unwrap();
-}
-
-async fn handler() -> Html<&'static str> {
-    Html("<h1>Hello, World!</h1>")
-}
