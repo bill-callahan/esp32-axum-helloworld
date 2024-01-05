@@ -6,7 +6,7 @@ After going down various and several rabbitholes, trying to get my little ESP32 
 - [x] - startup a webserver (various out there like Axum, Actix, Tide, etc but all heavily use Tokio, which until now wasn't ESP32 friendly)
 
 This repo demonstrates a working hello world utilizing upstreamed [tokio support for esp32](https://github.com/tokio-rs/tokio/issues/5867).  
-The tokio executor and I/O reactor are both working fully with no known gotchas.  Third party libraries utilizing tokio can also be used freely, such as [coap-server-rs](https://github.com/jasta/coap-server-rs).
+The tokio executor and I/O reactor are both working fully with no known gotchas.  Third party libraries utilizing tokio can also be used freely, such as [coap-server-rs](https://github.com/jasta/coap-server-rs).  I elected to do an [axum](https://docs.rs/axum) server, in this repo.
 
 ## Quickstart
 
