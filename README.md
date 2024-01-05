@@ -16,7 +16,7 @@ Recommended that you use an ESP32C3 as upstream Rust support is currently better
 git clone https://github.com/bill-callahan/esp32-axum-helloworld your-project-name
 cd your-project-name
 code .
--  src/main.rs # <-- edit the WIFI_SSID/WIFI_PASS variables!
+#  src/main.rs # <-- edit the WIFI_SSID/WIFI_PASS variables!
 cargo run --release   <-- greatly reduces size of binary, and takes awhile to compile first-time
 ```
 
