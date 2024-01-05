@@ -25,7 +25,7 @@ After the board connects to Wi-Fi, you can test that things are working with:
 - A web browser - point to http://{ip-obtainded-from-wifi}:3000
 - ThunderClient (vscode extension) - 'New Request" --> http://{ip-addr}:3000/ --> "Send" -- you should see an HTML Response and a Status: 200 OK
 
-Try: / - simple Hello World response
-     /clock - a static page that displays the time (in browser)
+Try: - '/' - simple Hello World response
+     - '/clock' - a static page that displays the time (in browser)
 
 You may optionally use `cargo run --target xtensa-esp32-espidf` or any of the other supported targets which should work provided that you followed the [esp-rs](https://github.com/esp-rs) installation instructions above.
