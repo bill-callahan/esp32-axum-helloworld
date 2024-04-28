@@ -1,4 +1,5 @@
 
+use std::str::FromStr as _;
 use embedded_svc::wifi::{ClientConfiguration, Configuration};
 use esp_idf_hal::prelude::Peripherals;
 use esp_idf_svc::eventloop::EspSystemEventLoop;
@@ -16,8 +17,8 @@ use crate::webserver::axumserver;
 
 
 // Edit these or provide your own way of provisioning...
-const WIFI_SSID: &str = "Telstra76DCFD";
-const WIFI_PASS: &str = "kcxbg9htnupt";
+const WIFI_SSID: &str = "YOUR_SSID";
+const WIFI_PASS: &str = "YOUR_PASSWD";
 
 esp_app_desc!();
 
@@ -79,8 +80,8 @@ pub struct WifiLoop<'a> {
     pub async fn configure(&mut self) -> Result<(), EspError> {
       info!("Setting Wi-Fi credentials...");
       self.wifi.set_configuration(&Configuration::Client(ClientConfiguration {
-        ssid: WIFI_SSID.into(),
-        password: WIFI_PASS.into(),
+        ssid: heapless::String::from_str(WIFI_SSID).unwrap(),
+        password: heapless::String::from_str(WIFI_PASS).unwrap(),
         ..Default::default()
       }))?;
   
@@ -107,13 +108,13 @@ pub struct WifiLoop<'a> {
         // way too difficult to showcase the core logic of an example and have
         // a proper Wi-Fi event loop without a robust async runtime.  Fortunately, we can do it
         // now!
-        wifi.wifi_wait(|| wifi.is_up(), None).await?;
+        wifi.wifi_wait(|w| w.is_up(), None).await?;
   
         info!("Connecting to Wi-Fi...");
         wifi.connect().await?;
   
         info!("Waiting for association...");
-        wifi.ip_wait_while(|| wifi.is_up().map(|s| !s), None).await?;
+        wifi.ip_wait_while(|w| w.is_up().map(|s| !s), None).await?;
   
         if exit_after_first_connect {
           return Ok(());
