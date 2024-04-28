@@ -17,18 +17,10 @@ use crate::webserver::axumserver;
 
 
 // Edit these or provide your own way of provisioning...
-<<<<<<< HEAD
+
 const WIFI_SSID: &str = "YOUR_SSID";
 const WIFI_PASS: &str = "YOUR_PASSWD";
-=======
-<<<<<<< HEAD
-const WIFI_SSID: &str = "YOUR_SSID";
-const WIFI_PASS: &str = "YOUR_PASSWD";
-=======
-const WIFI_SSID: &str = "your_ssid";
-const WIFI_PASS: &str = "password";
->>>>>>> 8c20d21fbebb48cd86fbaa55309c5e5ccc2e5e66
->>>>>>> 449150479b1b2350d093494800a459b538ad9f71
+
 
 esp_app_desc!();
 
